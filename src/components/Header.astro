@@ -5,6 +5,7 @@ const links = [
   { href: '#work', label: 'Work' },
   { href: '#experience', label: 'Experience' },
   { href: '#education', label: 'Education' },
+  { href: '#skills', label: 'Skills' },
   { href: '#contact', label: 'Contact' },
 ];
 ---
@@ -20,12 +21,37 @@ const links = [
           ))
         }
       </nav>
-      <a class="btn btn-primary header-cta" href={site.resumePath} target="_blank" rel="noopener noreferrer">
+      <details class="mobile-nav">
+        <summary class="mobile-nav-toggle" aria-label="Open menu">Menu</summary>
+        <div class="mobile-nav-panel" role="navigation" aria-label="Mobile">
+          {
+            links.map((link) => (
+              <a href={link.href}>{link.label}</a>
+            ))
+          }
+        </div>
+      </details>
+      <a
+        class="btn btn-primary header-cta"
+        href={site.resumePath}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open resume PDF"
+      >
         Resume
       </a>
     </div>
   </div>
 </header>
+
+<script>
+  const mobileNav = document.querySelector('.mobile-nav');
+  mobileNav?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      if (mobileNav instanceof HTMLDetailsElement) mobileNav.open = false;
+    });
+  });
+</script>
 
 <style>
   .site-header {
@@ -45,7 +71,7 @@ const links = [
     width: 100%;
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.5rem;
     min-height: 3.35rem;
     padding: 0.4rem 0.45rem 0.4rem 1.15rem;
     background: var(--glass);
@@ -75,16 +101,16 @@ const links = [
   .nav {
     display: none;
     align-items: center;
-    gap: 0.15rem;
+    gap: 0.1rem;
   }
 
   .nav a {
     color: var(--text-secondary);
     text-decoration: none;
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     font-weight: 500;
     letter-spacing: -0.01em;
-    padding: 0.45rem 0.75rem;
+    padding: 0.45rem 0.65rem;
     border-radius: var(--radius-pill);
     transition: background 180ms var(--ease), color 180ms var(--ease);
   }
@@ -94,6 +120,60 @@ const links = [
     background: rgba(255, 255, 255, 0.55);
   }
 
+  .mobile-nav {
+    position: relative;
+  }
+
+  .mobile-nav-toggle {
+    list-style: none;
+    cursor: pointer;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    padding: 0.45rem 0.75rem;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid var(--glass-border-soft);
+  }
+
+  .mobile-nav-toggle::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-nav[open] .mobile-nav-toggle {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.75);
+  }
+
+  .mobile-nav-panel {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.55rem);
+    display: grid;
+    gap: 0.15rem;
+    min-width: 10.5rem;
+    padding: 0.45rem;
+    background: var(--glass-strong);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    box-shadow: var(--glass-shadow), var(--glass-inset);
+  }
+
+  .mobile-nav-panel a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.65rem 0.75rem;
+    border-radius: 0.75rem;
+  }
+
+  .mobile-nav-panel a:hover {
+    background: rgba(255, 255, 255, 0.7);
+  }
+
   .header-cta {
     min-height: 2.4rem;
     padding-inline: 1.05rem;
@@ -101,9 +181,13 @@ const links = [
     flex-shrink: 0;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 860px) {
     .nav {
       display: flex;
+    }
+
+    .mobile-nav {
+      display: none;
     }
   }
 </style>
