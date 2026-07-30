@@ -1,6 +1,6 @@
 export const interests: string[] = [
   'Developer tooling and AI-assisted workflows',
-  'Systems that stay correct under real-world pressure',
+  'Backend systems that stay correct at scale',
   'Security-minded software design',
-  'Startups shipping ambitious products',
+  'Applied ML in production products',
 ];
