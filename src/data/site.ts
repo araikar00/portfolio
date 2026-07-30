@@ -5,7 +5,7 @@ export const site = {
   summary:
     'Incoming Software Engineer focused on backend systems, developer tooling, and making AI-assisted code production-safe.',
   email: 'aryan.raikar@example.com',
-  github: 'https://github.com/araikar',
+  github: 'https://github.com/araikar00',
   linkedin: 'https://www.linkedin.com/in/aryanraikar',
   resumePath: '/resume.pdf',
   location: 'United States',

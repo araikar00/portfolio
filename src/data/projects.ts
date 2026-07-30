@@ -22,7 +22,7 @@ export const projects: Project[] = [
     outcome:
       'A developer-facing audit tool that flags AI-authored diffs, scores risk from AST patterns, sandboxes suspicious changes, and posts Markdown risk reports on PRs.',
     tech: ['Python', 'AST', 'Docker', 'Git Hooks', 'GitHub Actions'],
-    href: 'https://github.com/araikar',
+    href: 'https://github.com/araikar00',
     featured: true,
   },
   {
@@ -36,6 +36,7 @@ export const projects: Project[] = [
     outcome:
       'A production portfolio optimized for SWE/ML outreach: selected work, experience, education, and resume PDF on a CDN-backed deploy.',
     tech: ['Astro', 'TypeScript', 'Vercel'],
+    href: 'https://github.com/araikar00/portfolio',
     featured: true,
   },
 ];
