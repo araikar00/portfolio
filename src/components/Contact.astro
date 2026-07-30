@@ -11,10 +11,36 @@ import { site } from '../data/site';
         Open to Software Engineer and ML-adjacent opportunities at startups and larger product teams.
       </p>
       <div class="contact-actions">
-        <a class="btn btn-primary" href={`mailto:${site.email}`}>{site.email}</a>
-        <a class="btn btn-ghost" href={site.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a class="btn btn-ghost" href={site.github} target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a class="btn btn-ghost" href={site.resumePath} target="_blank" rel="noopener noreferrer">Resume PDF</a>
+        <a class="btn btn-primary" href={`mailto:${site.email}`} aria-label={`Email ${site.name}`}>
+          {site.email}
+        </a>
+        <a
+          class="btn btn-ghost"
+          href={site.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn profile"
+        >
+          LinkedIn
+        </a>
+        <a
+          class="btn btn-ghost"
+          href={site.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub profile"
+        >
+          GitHub
+        </a>
+        <a
+          class="btn btn-ghost"
+          href={site.resumePath}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open resume PDF"
+        >
+          Resume PDF
+        </a>
       </div>
     </div>
   </div>

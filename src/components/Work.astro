@@ -19,7 +19,13 @@ import { projects } from '../data/projects';
             <div class="project-meta">
               <span class="project-index">{String(index + 1).padStart(2, '0')}</span>
               {project.href && (
-                <a class="project-link" href={project.href} target="_blank" rel="noopener noreferrer">
+                <a
+                  class="project-link"
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${project.name} source on GitHub`}
+                >
                   View source
                 </a>
               )}

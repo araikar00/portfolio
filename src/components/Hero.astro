@@ -9,11 +9,25 @@ import { site } from '../data/site';
     <p class="hero-headline hero-animate" style="--d: 140ms">{site.headline}</p>
     <p class="hero-summary hero-animate" style="--d: 210ms">{site.summary}</p>
     <div class="hero-actions hero-animate" style="--d: 280ms">
-      <a class="btn btn-primary" href={site.resumePath} target="_blank" rel="noopener noreferrer">
+      <a
+        class="btn btn-primary"
+        href={site.resumePath}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open resume PDF"
+      >
         View resume
       </a>
       <a class="btn btn-ghost" href="#contact">Contact</a>
-      <a class="btn btn-ghost" href={site.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a
+        class="btn btn-ghost"
+        href={site.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub profile"
+      >
+        GitHub
+      </a>
     </div>
   </div>
 </section>

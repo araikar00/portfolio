@@ -9,11 +9,12 @@ import Skills from '../components/Skills.astro';
 import Interests from '../components/Interests.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
 ---
 
 <BaseLayout>
   <Header />
-  <main id="main">
+  <main id="main" tabindex="-1" aria-label={`${site.name} portfolio`}>
     <Hero />
     <Work />
     <Experience />
