@@ -10,6 +10,23 @@ interface Props {
 const { title = `${site.name} — ${site.title}`, description = site.summary } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(site.ogImage, Astro.site);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  jobTitle: site.title,
+  url: Astro.site?.href,
+  email: site.email,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'San Francisco',
+    addressRegion: 'CA',
+    addressCountry: 'US',
+  },
+  sameAs: [site.github, site.linkedin],
+  description: site.summary,
+};
 ---
 
 <!doctype html>
@@ -21,20 +38,28 @@ const ogImage = new URL(site.ogImage, Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content={site.name} />
+    <meta
+      name="keywords"
+      content="Aryan Raikar, Software Engineer, backend, machine learning, UCSD, Wells Fargo, portfolio"
+    />
+    <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
     <meta name="theme-color" content="#f2f4f8" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
