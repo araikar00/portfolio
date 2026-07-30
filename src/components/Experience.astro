@@ -1,0 +1,96 @@
+---
+import { experience } from '../data/experience';
+---
+
+<section class="section experience" id="experience" aria-labelledby="experience-title">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="section-label">Experience</p>
+      <h2 class="section-title" id="experience-title">Where I’ve shipped software</h2>
+      <p class="section-lead">Roles and internships that shaped how I build production systems.</p>
+    </div>
+
+    <ol class="exp-list">
+      {
+        experience.map((job, index) => (
+          <li class="exp-item reveal" style={`--i: ${index}`}>
+            <div class="exp-heading">
+              <h3>
+                {job.role}
+                <span class="exp-company"> · {job.company}</span>
+              </h3>
+              <p class="exp-dates">
+                {job.start} — {job.end}
+                {job.location ? ` · ${job.location}` : ''}
+              </p>
+            </div>
+            <ul class="exp-bullets">
+              {job.bullets.map((bullet) => (
+                <li>{bullet}</li>
+              ))}
+            </ul>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .exp-list {
+    display: grid;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .exp-item {
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--line);
+    transition-delay: calc(var(--i, 0) * 70ms);
+  }
+
+  .exp-heading {
+    margin-bottom: 1rem;
+  }
+
+  .exp-heading h3 {
+    font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+    margin-bottom: 0.35rem;
+  }
+
+  .exp-company {
+    color: var(--steel-bright);
+    font-weight: 600;
+  }
+
+  .exp-dates {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .exp-bullets {
+    display: grid;
+    gap: 0.65rem;
+    max-width: 48rem;
+  }
+
+  .exp-bullets li {
+    position: relative;
+    padding-left: 1rem;
+    color: var(--text-muted);
+  }
+
+  .exp-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 50%;
+    background: var(--steel-dim);
+  }
+</style>

@@ -1,0 +1,88 @@
+---
+import { site } from '../data/site';
+
+const links = [
+  { href: '#work', label: 'Work' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#education', label: 'Education' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top">{site.name}</a>
+    <nav class="nav" aria-label="Primary">
+      {
+        links.map((link) => (
+          <a href={link.href}>{link.label}</a>
+        ))
+      }
+    </nav>
+    <a class="btn btn-primary header-cta" href={site.resumePath} target="_blank" rel="noopener noreferrer">
+      Resume
+    </a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: var(--header-h);
+    border-bottom: 1px solid var(--line);
+    background: rgba(12, 15, 18, 0.82);
+    backdrop-filter: blur(12px);
+  }
+
+  .header-inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .brand {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+    margin-right: auto;
+  }
+
+  .brand:hover {
+    color: var(--steel-bright);
+  }
+
+  .nav {
+    display: none;
+    align-items: center;
+    gap: 1.35rem;
+  }
+
+  .nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  .nav a:hover {
+    color: var(--text);
+  }
+
+  .header-cta {
+    min-height: 2.35rem;
+    padding-inline: 1rem;
+    font-size: 0.875rem;
+  }
+
+  @media (min-width: 768px) {
+    .nav {
+      display: flex;
+    }
+  }
+</style>

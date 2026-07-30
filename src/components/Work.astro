@@ -1,0 +1,138 @@
+---
+import { projects } from '../data/projects';
+---
+
+<section class="section work" id="work" aria-labelledby="work-title">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="section-label">Selected work</p>
+      <h2 class="section-title" id="work-title">Projects that show how I build</h2>
+      <p class="section-lead">
+        A short list of shipped or in-progress work — problem, role, and outcome first.
+      </p>
+    </div>
+
+    <div class="project-list">
+      {
+        projects.map((project, index) => (
+          <article class="project reveal" style={`--i: ${index}`}>
+            <div class="project-meta">
+              <span class="project-index">{String(index + 1).padStart(2, '0')}</span>
+              {project.href && (
+                <a class="project-link" href={project.href} target="_blank" rel="noopener noreferrer">
+                  View source
+                </a>
+              )}
+            </div>
+            <h3 class="project-name">{project.name}</h3>
+            <p class="project-tagline">{project.tagline}</p>
+            <dl class="project-details">
+              <div>
+                <dt>Problem</dt>
+                <dd>{project.problem}</dd>
+              </div>
+              <div>
+                <dt>Role</dt>
+                <dd>{project.role}</dd>
+              </div>
+              <div>
+                <dt>Outcome</dt>
+                <dd>{project.outcome}</dd>
+              </div>
+            </dl>
+            <ul class="tech-list" aria-label="Technologies">
+              {project.tech.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .project-list {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  .project {
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+
+  .project-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .project-index {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--steel-dim);
+  }
+
+  .project-link {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-decoration: none;
+  }
+
+  .project-name {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 0.35rem;
+  }
+
+  .project-tagline {
+    color: var(--steel-bright);
+    margin-bottom: 1.5rem;
+  }
+
+  .project-details {
+    display: grid;
+    gap: 1.15rem;
+    margin: 0 0 1.5rem;
+  }
+
+  .project-details dt {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 0.35rem;
+  }
+
+  .project-details dd {
+    margin: 0;
+    color: var(--text-muted);
+    max-width: 52rem;
+  }
+
+  .tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.75rem;
+  }
+
+  .tech-list li {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--line-strong);
+    padding-bottom: 0.1rem;
+  }
+
+  @media (min-width: 900px) {
+    .project-details {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+  }
+</style>

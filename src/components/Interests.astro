@@ -1,0 +1,46 @@
+---
+import { interests } from '../data/interests';
+---
+
+<section class="section interests" id="interests" aria-labelledby="interests-title">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="section-label">Interests</p>
+      <h2 class="section-title" id="interests-title">What keeps me curious</h2>
+      <p class="section-lead">Signals beyond the resume — the problems and environments I care about.</p>
+    </div>
+
+    <ul class="interest-list reveal">
+      {
+        interests.map((item) => (
+          <li>{item}</li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .interest-list {
+    display: grid;
+    gap: 0.85rem;
+    max-width: 40rem;
+  }
+
+  .interest-list li {
+    position: relative;
+    padding-left: 1.15rem;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+  }
+
+  .interest-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 0.45rem;
+    height: 1px;
+    background: var(--steel);
+  }
+</style>
