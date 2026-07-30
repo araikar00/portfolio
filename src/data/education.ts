@@ -9,12 +9,12 @@ export type Education = {
 
 export const education: Education[] = [
   {
-    school: 'University',
-    degree: 'B.S. in Computer Science',
+    school: 'University of California, San Diego',
+    degree: 'B.S. in Mathematics and Computer Science',
     start: '2022',
     end: '2026',
     details: [
-      'Relevant coursework: Data Structures, Algorithms, Operating Systems, Databases, Machine Learning',
+      'Relevant coursework: CSE100 Data Structures and Algorithms, Databases, Machine Learning',
       'Update this entry with your school name, GPA (if strong), and notable coursework or honors.',
     ],
   },

@@ -10,18 +10,20 @@ const links = [
 ---
 
 <header class="site-header">
-  <div class="wrap header-inner">
-    <a class="brand" href="#top">{site.name}</a>
-    <nav class="nav" aria-label="Primary">
-      {
-        links.map((link) => (
-          <a href={link.href}>{link.label}</a>
-        ))
-      }
-    </nav>
-    <a class="btn btn-primary header-cta" href={site.resumePath} target="_blank" rel="noopener noreferrer">
-      Resume
-    </a>
+  <div class="wrap header-shell">
+    <div class="header-glass">
+      <a class="brand" href="#top">{site.name}</a>
+      <nav class="nav" aria-label="Primary">
+        {
+          links.map((link) => (
+            <a href={link.href}>{link.label}</a>
+          ))
+        }
+      </nav>
+      <a class="btn btn-primary header-cta" href={site.resumePath} target="_blank" rel="noopener noreferrer">
+        Resume
+      </a>
+    </div>
   </div>
 </header>
 
@@ -30,54 +32,73 @@ const links = [
     position: sticky;
     top: 0;
     z-index: 50;
-    height: var(--header-h);
-    border-bottom: 1px solid var(--line);
-    background: rgba(12, 15, 18, 0.82);
-    backdrop-filter: blur(12px);
+    padding-top: 0.85rem;
+    padding-bottom: 0.5rem;
   }
 
-  .header-inner {
-    height: 100%;
+  .header-shell {
+    display: flex;
+    justify-content: center;
+  }
+
+  .header-glass {
+    width: 100%;
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    gap: 0.75rem;
+    min-height: 3.35rem;
+    padding: 0.4rem 0.45rem 0.4rem 1.15rem;
+    background: var(--glass);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-pill);
+    box-shadow: var(--glass-shadow), var(--glass-inset);
   }
 
   .brand {
     font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 1.05rem;
+    font-weight: 600;
+    font-size: 0.95rem;
     letter-spacing: -0.02em;
     color: var(--text);
     text-decoration: none;
     margin-right: auto;
+    white-space: nowrap;
   }
 
   .brand:hover {
-    color: var(--steel-bright);
+    color: var(--text);
+    opacity: 0.7;
   }
 
   .nav {
     display: none;
     align-items: center;
-    gap: 1.35rem;
+    gap: 0.15rem;
   }
 
   .nav a {
-    color: var(--text-muted);
+    color: var(--text-secondary);
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 0.875rem;
     font-weight: 500;
+    letter-spacing: -0.01em;
+    padding: 0.45rem 0.75rem;
+    border-radius: var(--radius-pill);
+    transition: background 180ms var(--ease), color 180ms var(--ease);
   }
 
   .nav a:hover {
     color: var(--text);
+    background: rgba(255, 255, 255, 0.55);
   }
 
   .header-cta {
-    min-height: 2.35rem;
-    padding-inline: 1rem;
-    font-size: 0.875rem;
+    min-height: 2.4rem;
+    padding-inline: 1.05rem;
+    font-size: 0.8125rem;
+    flex-shrink: 0;
   }
 
   @media (min-width: 768px) {

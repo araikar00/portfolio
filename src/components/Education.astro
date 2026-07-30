@@ -6,14 +6,13 @@ import { education } from '../data/education';
   <div class="wrap">
     <div class="reveal">
       <p class="section-label">Education</p>
-      <h2 class="section-title" id="education-title">Academic foundation</h2>
-      <p class="section-lead">Degree, coursework, and the fundamentals behind the work.</p>
+      <h2 class="section-title" id="education-title">Education</h2>
     </div>
 
     <div class="edu-list">
       {
         education.map((item, index) => (
-          <article class="edu-item reveal" style={`--i: ${index}`}>
+          <article class="edu-item glass reveal" style={`--i: ${index}`}>
             <h3>{item.degree}</h3>
             <p class="edu-school">
               {item.school}
@@ -39,39 +38,39 @@ import { education } from '../data/education';
 <style>
   .edu-list {
     display: grid;
-    gap: 1.75rem;
+    gap: 1rem;
   }
 
   .edu-item {
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--line);
-    transition-delay: calc(var(--i, 0) * 70ms);
+    padding: clamp(1.35rem, 2.5vw, 1.75rem);
+    transition-delay: calc(var(--i, 0) * 60ms);
   }
 
   .edu-item h3 {
-    font-size: 1.35rem;
-    margin-bottom: 0.35rem;
+    font-size: 1.25rem;
+    margin-bottom: 0.3rem;
   }
 
   .edu-school {
-    color: var(--steel-bright);
-    margin-bottom: 0.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.2rem;
   }
 
   .edu-dates {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--text-muted);
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
     margin-bottom: 1rem;
   }
 
   .edu-details {
     display: grid;
-    gap: 0.5rem;
-    max-width: 42rem;
+    gap: 0.45rem;
+    max-width: 40rem;
   }
 
   .edu-details li {
-    color: var(--text-muted);
+    color: var(--text-secondary);
+    font-size: 0.975rem;
+    line-height: 1.5;
   }
 </style>

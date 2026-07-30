@@ -4,27 +4,34 @@ import { site } from '../data/site';
 
 <section class="section contact" id="contact" aria-labelledby="contact-title">
   <div class="wrap">
-    <div class="reveal">
+    <div class="contact-panel glass reveal">
       <p class="section-label">Contact</p>
       <h2 class="section-title" id="contact-title">Let’s talk about roles and systems</h2>
       <p class="section-lead">
         Open to Software Engineer and ML-adjacent opportunities at startups and larger product teams.
       </p>
-    </div>
-
-    <div class="contact-actions reveal">
-      <a class="btn btn-primary" href={`mailto:${site.email}`}>{site.email}</a>
-      <a class="btn btn-ghost" href={site.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a class="btn btn-ghost" href={site.github} target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a class="btn btn-ghost" href={site.resumePath} target="_blank" rel="noopener noreferrer">Resume PDF</a>
+      <div class="contact-actions">
+        <a class="btn btn-primary" href={`mailto:${site.email}`}>{site.email}</a>
+        <a class="btn btn-ghost" href={site.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="btn btn-ghost" href={site.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="btn btn-ghost" href={site.resumePath} target="_blank" rel="noopener noreferrer">Resume PDF</a>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
+  .contact-panel {
+    padding: clamp(1.75rem, 4vw, 2.5rem);
+  }
+
+  .contact-panel .section-lead {
+    margin-bottom: 1.5rem;
+  }
+
   .contact-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 0.65rem;
   }
 </style>
