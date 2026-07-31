@@ -1,10 +1,9 @@
 export const site = {
   name: 'Aryan Raikar',
   title: 'Software Engineer',
-  headline: 'Building reliable systems at the intersection of software and ML.',
+  headline: 'Software Engineer @ Wells Fargo',
   summary:
-    'Incoming Software Engineer focused on backend systems, developer tooling, and making AI-assisted code production-safe.',
-  email: 'aryanraikararyan@gmail.com',
+    'Interested in building AI/ML systems at scale.',
   github: 'https://github.com/araikar00',
   linkedin: 'https://www.linkedin.com/in/aryan-raikar-474a961b5/',
   resumePath: '/resume.pdf',

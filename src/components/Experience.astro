@@ -4,30 +4,32 @@ import { experience } from '../data/experience';
 
 <section class="section experience" id="experience" aria-labelledby="experience-title">
   <div class="wrap">
-    <div class="reveal">
-      <p class="section-label">Experience</p>
-      <h2 class="section-title" id="experience-title">Work Experience</h2>
+    <div class="exp-header reveal">
+      <h2 class="exp-title" id="experience-title">Experience</h2>
     </div>
 
-    <ol class="exp-list glass reveal">
+    <ol class="exp-list">
       {
         experience.map((job, index) => (
-          <li class="exp-item" style={`--i: ${index}`}>
-            <div class="exp-heading">
-              <h3>
-                {job.role}
-                <span class="exp-company"> · {job.company}</span>
-              </h3>
-              <p class="exp-dates">
-                {job.start} — {job.end}
-                {job.location ? ` · ${job.location}` : ''}
-              </p>
+          <li class="exp-item glass reveal" style={`--i: ${index}`}>
+            <div class="exp-logo" aria-hidden="true">
+              <img src={job.logo} alt="" width="96" height="96" />
             </div>
-            <ul class="exp-bullets">
-              {job.bullets.map((bullet) => (
-                <li>{bullet}</li>
-              ))}
-            </ul>
+
+            <div class="exp-body">
+              <h3 class="exp-company">{job.company}</h3>
+              <p class="exp-role">{job.role}</p>
+
+              <p class="exp-tags" aria-label="Technologies">
+                {job.tags.join('  ')}
+              </p>
+
+              <div class="exp-copy">
+                {job.description.map((paragraph) => (
+                  <p>{paragraph}</p>
+                ))}
+              </div>
+            </div>
           </li>
         ))
       }
@@ -36,71 +38,110 @@ import { experience } from '../data/experience';
 </section>
 
 <style>
+  .exp-header {
+    margin-bottom: clamp(2rem, 4vw, 2.75rem);
+  }
+
+  .exp-title {
+    font-size: clamp(1.75rem, 3.2vw, 2.25rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+
   .exp-list {
     display: grid;
-    gap: 0;
-    list-style: none;
-    margin: 0;
-    padding: clamp(0.35rem, 1.5vw, 0.6rem);
+    gap: var(--card-gap);
   }
 
   .exp-item {
-    padding: clamp(1.25rem, 2.5vw, 1.6rem) clamp(1.25rem, 2.5vw, 1.75rem);
+    display: grid;
+    grid-template-columns: 5.5rem 1fr;
+    gap: clamp(1.25rem, 3vw, 2rem);
+    align-items: start;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    transition-delay: calc(var(--i, 0) * 70ms);
   }
 
-  .exp-item + .exp-item {
-    border-top: 1px solid var(--line);
+  .exp-logo {
+    width: 5.5rem;
+    height: 5.5rem;
+    border-radius: 1.35rem;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #fff;
+    border: 1px solid var(--glass-border);
+    box-shadow:
+      0 12px 36px rgba(15, 23, 42, 0.12),
+      0 4px 12px rgba(15, 23, 42, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.75);
   }
 
-  .exp-heading {
-    margin-bottom: 0.85rem;
+  .exp-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 
-  .exp-heading h3 {
-    font-size: clamp(1.1rem, 2vw, 1.3rem);
-    margin-bottom: 0.3rem;
+  .exp-body {
+    min-width: 0;
+    padding-top: 0.1rem;
   }
 
   .exp-company {
-    color: var(--text-secondary);
+    font-size: clamp(1.35rem, 2.6vw, 1.7rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    margin-bottom: 0.15rem;
+  }
+
+  .exp-role {
+    font-size: 1.05rem;
     font-weight: 400;
+    color: var(--text-secondary);
+    margin-bottom: 0.45rem;
+    letter-spacing: -0.015em;
   }
 
-  .exp-dates {
-    font-size: 0.875rem;
+  .exp-tags {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     color: var(--text-tertiary);
+    margin-bottom: 1.1rem;
+    line-height: 1.5;
   }
 
-  .exp-bullets {
+  .exp-copy {
     display: grid;
     gap: 0.55rem;
     overflow-x: auto;
   }
 
-  .exp-bullets li {
-    position: relative;
-    padding-left: 1rem;
-    color: var(--text-secondary);
+  .exp-copy p {
+    color: var(--text);
     font-size: 0.975rem;
-    line-height: 1.4;
+    line-height: 1.5;
     white-space: nowrap;
   }
 
-  .exp-bullets li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.55em;
-    width: 0.3rem;
-    height: 0.3rem;
-    border-radius: 50%;
-    background: var(--accent);
-    opacity: 0.7;
+  @media (max-width: 900px) {
+    .exp-copy p {
+      white-space: normal;
+    }
   }
 
-  @media (max-width: 900px) {
-    .exp-bullets li {
-      white-space: normal;
+  @media (max-width: 600px) {
+    .exp-item {
+      grid-template-columns: 4rem 1fr;
+      gap: 1rem;
+    }
+
+    .exp-logo {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 1rem;
     }
   }
 </style>
