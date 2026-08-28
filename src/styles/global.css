@@ -1,3 +1,24 @@
+@import "tailwindcss/theme" layer(theme);
+@import "tailwindcss/utilities" layer(utilities);
+@import "tw-animate-css";
+
+@theme {
+  --radius-4xl: 2rem;
+}
+
+.rounded-inherit {
+  border-radius: inherit;
+}
+
+@keyframes moveBackground {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 0% -1000%;
+  }
+}
+
 :root {
   --bg: #f2f4f8;
   --bg-soft: #e8ecf2;
@@ -38,6 +59,7 @@ html {
   scroll-behavior: smooth;
   color-scheme: light;
   scroll-padding-top: 5.5rem;
+  overflow-x: clip;
 }
 
 body {
@@ -51,21 +73,18 @@ body {
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  overflow-x: hidden;
 }
 
-/* Soft ambient canvas behind liquid glass */
+/* Photographic canvas so the liquid-glass distortion can read */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   z-index: -2;
   background:
-    radial-gradient(ellipse 70% 50% at 12% 8%, rgba(120, 180, 255, 0.35), transparent 55%),
-    radial-gradient(ellipse 55% 45% at 88% 18%, rgba(180, 200, 255, 0.28), transparent 50%),
-    radial-gradient(ellipse 60% 50% at 70% 88%, rgba(160, 220, 240, 0.22), transparent 55%),
-    radial-gradient(ellipse 50% 40% at 20% 75%, rgba(200, 210, 230, 0.35), transparent 50%),
-    linear-gradient(180deg, #f5f7fb 0%, #eef1f6 50%, #f3f5f9 100%);
+    url("https://images.unsplash.com/photo-1432251407527-504a6b4174a2?q=80&w=2400&auto=format&fit=crop")
+      center top / 100% auto repeat-y;
+  animation: moveBackground 60s linear infinite;
   pointer-events: none;
 }
 
@@ -74,8 +93,9 @@ body::after {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  opacity: 0.5;
+  background:
+    linear-gradient(180deg, rgba(242, 247, 252, 0.28) 0%, rgba(232, 240, 248, 0.18) 100%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
   pointer-events: none;
 }
 
@@ -167,7 +187,7 @@ ol {
   margin-bottom: 2rem;
 }
 
-/* Liquid glass surface utility */
+/* Fallback surface if a non-React region still needs a glass plate */
 .glass {
   background: var(--glass);
   backdrop-filter: var(--blur);
@@ -259,5 +279,9 @@ ol {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  body::before {
+    animation: none;
   }
 }

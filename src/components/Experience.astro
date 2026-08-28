@@ -1,4 +1,5 @@
 ---
+import { GlassEffect } from './ui/liquid-glass';
 import { experience } from '../data/experience';
 ---
 
@@ -11,25 +12,29 @@ import { experience } from '../data/experience';
     <ol class="exp-list">
       {
         experience.map((job, index) => (
-          <li class="exp-item glass reveal" style={`--i: ${index}`}>
-            <div class="exp-logo" aria-hidden="true">
-              <img src={job.logo} alt="" width="96" height="96" />
-            </div>
+          <li class="reveal" style={`--i: ${index}`}>
+            <GlassEffect className="rounded-3xl w-full overflow-hidden">
+              <div class="exp-item">
+                <div class="exp-logo" aria-hidden="true">
+                  <img src={job.logo} alt="" width="96" height="96" />
+                </div>
 
-            <div class="exp-body">
-              <h3 class="exp-company">{job.company}</h3>
-              <p class="exp-role">{job.role}</p>
+                <div class="exp-body">
+                  <h3 class="exp-company">{job.company}</h3>
+                  <p class="exp-role">{job.role}</p>
 
-              <p class="exp-tags" aria-label="Technologies">
-                {job.tags.join('  ')}
-              </p>
+                  <p class="exp-tags" aria-label="Technologies">
+                    {job.tags.join('  ')}
+                  </p>
 
-              <div class="exp-copy">
-                {job.description.map((paragraph) => (
-                  <p>{paragraph}</p>
-                ))}
+                  <div class="exp-copy">
+                    {job.description.map((paragraph) => (
+                      <p>{paragraph}</p>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
+            </GlassEffect>
           </li>
         ))
       }
@@ -53,13 +58,16 @@ import { experience } from '../data/experience';
     gap: var(--card-gap);
   }
 
+  .exp-list > li {
+    transition-delay: calc(var(--i, 0) * 70ms);
+  }
+
   .exp-item {
     display: grid;
     grid-template-columns: 5.5rem 1fr;
     gap: clamp(1.25rem, 3vw, 2rem);
     align-items: start;
     padding: clamp(1.5rem, 3vw, 2rem);
-    transition-delay: calc(var(--i, 0) * 70ms);
   }
 
   .exp-logo {
@@ -123,6 +131,7 @@ import { experience } from '../data/experience';
     color: var(--text);
     font-size: 0.975rem;
     line-height: 1.5;
+    font-weight: 400;
     white-space: nowrap;
   }
 

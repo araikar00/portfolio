@@ -1,4 +1,5 @@
 ---
+import { GlassEffect } from './ui/liquid-glass';
 import { education } from '../data/education';
 ---
 
@@ -13,22 +14,26 @@ import { education } from '../data/education';
     <div class="edu-list">
       {
         education.map((item, index) => (
-          <article class="edu-item glass reveal" style={`--i: ${index}`}>
-            <h3>{item.degree}</h3>
-            <p class="edu-school">
-              {item.school}
-              {item.location ? ` · ${item.location}` : ''}
-            </p>
-            <p class="edu-dates">
-              {item.start} — {item.end}
-            </p>
-            {item.details && (
-              <ul class="edu-details">
-                {item.details.map((detail) => (
-                  <li>{detail}</li>
-                ))}
-              </ul>
-            )}
+          <article class="edu-item reveal" style={`--i: ${index}`}>
+            <GlassEffect className="rounded-3xl w-full overflow-hidden">
+              <div class="edu-inner">
+                <h3>{item.degree}</h3>
+                <p class="edu-school">
+                  {item.school}
+                  {item.location ? ` · ${item.location}` : ''}
+                </p>
+                <p class="edu-dates">
+                  {item.start} — {item.end}
+                </p>
+                {item.details && (
+                  <ul class="edu-details">
+                    {item.details.map((detail) => (
+                      <li>{detail}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </GlassEffect>
           </article>
         ))
       }
@@ -43,22 +48,27 @@ import { education } from '../data/education';
   }
 
   .edu-item {
-    padding: clamp(1.35rem, 2.5vw, 1.75rem);
     transition-delay: calc(var(--i, 0) * 60ms);
   }
 
-  .edu-item h3 {
+  .edu-inner {
+    padding: clamp(1.35rem, 2.5vw, 1.75rem);
+  }
+
+  .edu-inner h3 {
     font-size: 1.25rem;
     margin-bottom: 0.3rem;
   }
 
   .edu-school {
     color: var(--text-secondary);
+    font-weight: 400;
     margin-bottom: 0.2rem;
   }
 
   .edu-dates {
     font-size: 0.875rem;
+    font-weight: 400;
     color: var(--text-tertiary);
     margin-bottom: 1rem;
   }
@@ -72,6 +82,7 @@ import { education } from '../data/education';
   .edu-details li {
     color: var(--text-secondary);
     font-size: 0.975rem;
+    font-weight: 400;
     line-height: 1.5;
   }
 </style>

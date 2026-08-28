@@ -1,4 +1,5 @@
 ---
+import { GlassEffect } from './ui/liquid-glass';
 import { interests } from '../data/interests';
 ---
 
@@ -10,21 +11,28 @@ import { interests } from '../data/interests';
       <p class="section-lead">Signals beyond the resume — the problems and environments I care about.</p>
     </div>
 
-    <ul class="interest-list glass reveal">
-      {
-        interests.map((item) => (
-          <li>{item}</li>
-        ))
-      }
-    </ul>
+    <div class="interest-glass">
+      <GlassEffect className="rounded-3xl w-full overflow-hidden">
+        <ul class="interest-list reveal">
+          {
+            interests.map((item) => (
+              <li>{item}</li>
+            ))
+          }
+        </ul>
+      </GlassEffect>
+    </div>
   </div>
 </section>
 
 <style>
+  .interest-glass {
+    max-width: 40rem;
+  }
+
   .interest-list {
     display: grid;
     gap: 0;
-    max-width: 40rem;
     padding: 0.4rem;
   }
 
@@ -32,6 +40,7 @@ import { interests } from '../data/interests';
     padding: 1rem 1.25rem;
     color: var(--text-secondary);
     font-size: 1.05rem;
+    font-weight: 400;
     line-height: 1.45;
   }
 

@@ -1,4 +1,5 @@
 ---
+import { GlassEffect } from './ui/liquid-glass';
 import { site } from '../data/site';
 
 const links = [
@@ -12,35 +13,37 @@ const links = [
 
 <header class="site-header">
   <div class="wrap header-shell">
-    <div class="header-glass">
-      <a class="brand" href="#top">{site.name}</a>
-      <nav class="nav" aria-label="Primary">
-        {
-          links.map((link) => (
-            <a href={link.href}>{link.label}</a>
-          ))
-        }
-      </nav>
-      <details class="mobile-nav">
-        <summary class="mobile-nav-toggle" aria-label="Open menu">Menu</summary>
-        <div class="mobile-nav-panel" role="navigation" aria-label="Mobile">
+    <GlassEffect className="w-full rounded-full overflow-visible">
+      <div class="header-inner">
+        <a class="brand" href="#top">{site.name}</a>
+        <nav class="nav" aria-label="Primary">
           {
             links.map((link) => (
               <a href={link.href}>{link.label}</a>
             ))
           }
-        </div>
-      </details>
-      <a
-        class="btn btn-primary header-cta"
-        href={site.resumePath}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Open resume PDF"
-      >
-        Resume
-      </a>
-    </div>
+        </nav>
+        <details class="mobile-nav">
+          <summary class="mobile-nav-toggle" aria-label="Open menu">Menu</summary>
+          <div class="mobile-nav-panel" role="navigation" aria-label="Mobile">
+            {
+              links.map((link) => (
+                <a href={link.href}>{link.label}</a>
+              ))
+            }
+          </div>
+        </details>
+        <a
+          class="btn btn-primary header-cta"
+          href={site.resumePath}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open resume PDF"
+        >
+          Resume
+        </a>
+      </div>
+    </GlassEffect>
   </div>
 </header>
 
@@ -67,19 +70,13 @@ const links = [
     justify-content: center;
   }
 
-  .header-glass {
+  .header-inner {
     width: 100%;
     display: flex;
     align-items: center;
     gap: 0.5rem;
     min-height: 3.35rem;
     padding: 0.4rem 0.45rem 0.4rem 1.15rem;
-    background: var(--glass);
-    backdrop-filter: var(--blur);
-    -webkit-backdrop-filter: var(--blur);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-pill);
-    box-shadow: var(--glass-shadow), var(--glass-inset);
   }
 
   .brand {

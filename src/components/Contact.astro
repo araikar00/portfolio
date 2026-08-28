@@ -1,47 +1,49 @@
 ---
+import { GlassEffect } from './ui/liquid-glass';
 import { site } from '../data/site';
 ---
 
 <section class="section contact" id="contact" aria-labelledby="contact-title">
   <div class="wrap">
-    <div class="contact-panel glass reveal">
-      <p class="section-label">Contact</p>
-      <h2 class="section-title" id="contact-title">Let’s talk about roles and systems</h2>
-      <p class="section-lead">
-        Open to Software Engineer and ML-adjacent opportunities at startups and larger product teams.
-      </p>
-      <div class="contact-actions">
-        <a class="btn btn-primary" href={`mailto:${site.email}`} aria-label={`Email ${site.name}`}>
-          {site.email}
-        </a>
-        <a
-          class="btn btn-ghost"
-          href={site.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn profile"
-        >
-          LinkedIn
-        </a>
-        <a
-          class="btn btn-ghost"
-          href={site.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub profile"
-        >
-          GitHub
-        </a>
-        <a
-          class="btn btn-ghost"
-          href={site.resumePath}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Open resume PDF"
-        >
-          Resume PDF
-        </a>
-      </div>
+    <div class="reveal">
+      <GlassEffect className="rounded-3xl w-full overflow-hidden">
+        <div class="contact-panel">
+          <p class="section-label">Contact</p>
+          <h2 class="section-title" id="contact-title">Let’s talk about roles and systems</h2>
+          <p class="section-lead">
+            Open to Software Engineer and ML-adjacent opportunities at startups and larger product teams.
+          </p>
+          <div class="contact-actions">
+            <a
+              class="btn btn-ghost"
+              href={site.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn profile"
+            >
+              LinkedIn
+            </a>
+            <a
+              class="btn btn-ghost"
+              href={site.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub profile"
+            >
+              GitHub
+            </a>
+            <a
+              class="btn btn-ghost"
+              href={site.resumePath}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open resume PDF"
+            >
+              Resume PDF
+            </a>
+          </div>
+        </div>
+      </GlassEffect>
     </div>
   </div>
 </section>

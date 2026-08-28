@@ -1,4 +1,5 @@
 ---
+import { GlassEffect } from './ui/liquid-glass';
 import { projects } from '../data/projects';
 ---
 
@@ -15,42 +16,46 @@ import { projects } from '../data/projects';
     <div class="project-list">
       {
         projects.map((project, index) => (
-          <article class="project glass reveal" style={`--i: ${index}`}>
-            <div class="project-meta">
-              <span class="project-index">{String(index + 1).padStart(2, '0')}</span>
-              {project.href && (
-                <a
-                  class="project-link"
-                  href={project.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${project.name} source on GitHub`}
-                >
-                  View source
-                </a>
-              )}
-            </div>
-            <h3 class="project-name">{project.name}</h3>
-            <p class="project-tagline">{project.tagline}</p>
-            <dl class="project-details">
-              <div>
-                <dt>Problem</dt>
-                <dd>{project.problem}</dd>
+          <article class="project reveal" style={`--i: ${index}`}>
+            <GlassEffect className="rounded-3xl w-full overflow-hidden">
+              <div class="project-inner">
+                <div class="project-meta">
+                  <span class="project-index">{String(index + 1).padStart(2, '0')}</span>
+                  {project.href && (
+                    <a
+                      class="project-link"
+                      href={project.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${project.name} source on GitHub`}
+                    >
+                      View source
+                    </a>
+                  )}
+                </div>
+                <h3 class="project-name">{project.name}</h3>
+                <p class="project-tagline">{project.tagline}</p>
+                <dl class="project-details">
+                  <div>
+                    <dt>Problem</dt>
+                    <dd>{project.problem}</dd>
+                  </div>
+                  <div>
+                    <dt>Role</dt>
+                    <dd>{project.role}</dd>
+                  </div>
+                  <div>
+                    <dt>Outcome</dt>
+                    <dd>{project.outcome}</dd>
+                  </div>
+                </dl>
+                <ul class="tech-list" aria-label="Technologies">
+                  {project.tech.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
               </div>
-              <div>
-                <dt>Role</dt>
-                <dd>{project.role}</dd>
-              </div>
-              <div>
-                <dt>Outcome</dt>
-                <dd>{project.outcome}</dd>
-              </div>
-            </dl>
-            <ul class="tech-list" aria-label="Technologies">
-              {project.tech.map((item) => (
-                <li>{item}</li>
-              ))}
-            </ul>
+            </GlassEffect>
           </article>
         ))
       }
@@ -65,8 +70,11 @@ import { projects } from '../data/projects';
   }
 
   .project {
-    padding: clamp(1.5rem, 3vw, 2rem);
     transition-delay: calc(var(--i, 0) * 70ms);
+  }
+
+  .project-inner {
+    padding: clamp(1.5rem, 3vw, 2rem);
   }
 
   .project-meta {
@@ -117,6 +125,7 @@ import { projects } from '../data/projects';
     color: var(--text-secondary);
     font-size: 0.975rem;
     line-height: 1.5;
+    font-weight: 400;
   }
 
   .tech-list {
