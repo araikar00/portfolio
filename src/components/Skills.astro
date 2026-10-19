@@ -14,13 +14,16 @@ import { skills } from '../data/skills';
       {
         skills.map((group, index) => (
           <div class="skill-group reveal" style={`--i: ${index}`}>
-            <div class="panel skill-inner">
-              <h3>{group.label}</h3>
-              <ul>
-                {group.items.map((item) => (
-                  <li>{item}</li>
-                ))}
-              </ul>
+            <div class="glass-dock skill-dock">
+              <div class="liquid-gl liquid-gl--card" aria-hidden="true"></div>
+              <div class="glass-dock__content skill-inner">
+                <h3>{group.label}</h3>
+                <ul>
+                  {group.items.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         ))
@@ -38,6 +41,10 @@ import { skills } from '../data/skills';
 
   .skill-group {
     transition-delay: calc(var(--i, 0) * 50ms);
+    height: 100%;
+  }
+
+  .skill-dock {
     height: 100%;
   }
 
