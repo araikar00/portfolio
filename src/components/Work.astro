@@ -14,7 +14,7 @@ import { projects } from '../data/projects';
       {
         projects.map((project, index) => (
           <article class="project reveal" style={`--i: ${index}`}>
-            <div class="liquid-gl">
+            <div class="liquid-gl liquid-gl--card">
               <div class="liquid-gl__content project-inner">
                 <div class="project-meta">
                   <span class="project-index">{String(index + 1).padStart(2, '0')}</span>

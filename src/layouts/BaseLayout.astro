@@ -75,15 +75,90 @@ const jsonLd = {
               }
             }
           },
-          { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
+          { threshold: 0.08, rootMargin: '0px 0px -6% 0px' },
         );
         revealEls.forEach((el) => observer.observe(el));
       } else {
         revealEls.forEach((el) => el.classList.add('is-visible'));
       }
     </script>
-    <!-- liquidGL from npm (MIT). No helper GUI / no remote script tags. -->
-    <script src="../scripts/init-liquid-gl.ts"></script>
+    <!-- Official liquidGL order: library → helper → init (blocking, like demos) -->
+    <script is:inline src="/vendor/liquidGL.js"></script>
+    <script is:inline src="/vendor/liquidGL-helper.js"></script>
+    <script is:inline>
+      (function () {
+        var BASE = {
+          engine: 'auto',
+          snapshot: 'body',
+          resolution: 2.0,
+          refraction: 0.01,
+          aberration: 0,
+          bevelDepth: 0.08,
+          bevelWidth: 0.15,
+          frost: 3,
+          shadow: true,
+          specular: true,
+          reveal: 'fade',
+          tilt: false,
+          tiltFactor: 5,
+          tiltEase: 400,
+          draggable: false,
+          interaction: 'none',
+          magnify: 1,
+          tint: null,
+          helper: false,
+        };
+
+        function initLiquidGL() {
+          if (typeof window.liquidGL !== 'function') {
+            console.error('liquidGL failed to load from /vendor/liquidGL.js');
+            return;
+          }
+
+          if (document.querySelector('.liquid-gl--nav')) {
+            window.liquidGL(
+              Object.assign({}, BASE, {
+                target: '.liquid-gl--nav',
+                frost: 4,
+                refraction: 0.012,
+                bevelDepth: 0.1,
+                bevelWidth: 0.18,
+                helper: true,
+                zIndex: 50,
+              }),
+            );
+          }
+
+          if (document.querySelector('.liquid-gl--card')) {
+            window.liquidGL(
+              Object.assign({}, BASE, {
+                target: '.liquid-gl--card',
+                frost: 3.5,
+                refraction: 0.008,
+                bevelDepth: 0.07,
+                bevelWidth: 0.12,
+                helper: false,
+              }),
+            );
+          }
+
+          window.liquidGL.syncWith();
+          document.documentElement.classList.add('liquid-gl-ready');
+        }
+
+        if (document.readyState === 'complete') {
+          requestAnimationFrame(initLiquidGL);
+        } else {
+          window.addEventListener(
+            'load',
+            function () {
+              requestAnimationFrame(initLiquidGL);
+            },
+            { once: true },
+          );
+        }
+      })();
+    </script>
   </body>
 </html>
 
