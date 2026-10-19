@@ -3,31 +3,44 @@ import { site } from '../data/site';
 ---
 
 <section class="hero" id="top" aria-labelledby="hero-name">
-  <div class="wrap hero-content">
-    <p class="hero-kicker hero-animate" style="--d: 0ms">{site.title}</p>
-    <h1 id="hero-name" class="hero-name hero-animate" style="--d: 70ms">{site.name}</h1>
-    <p class="hero-headline hero-animate" style="--d: 140ms">{site.headline}</p>
-    <p class="hero-summary hero-animate" style="--d: 210ms">{site.summary}</p>
-    <div class="hero-actions hero-animate" style="--d: 280ms">
-      <a
-        class="btn btn-primary"
-        href={site.resumePath}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Open resume PDF"
-      >
-        View resume
-      </a>
-      <a class="btn btn-ghost" href="#contact">Contact</a>
-      <a
-        class="btn btn-ghost"
-        href={site.github}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="GitHub profile"
-      >
-        GitHub
-      </a>
+  <div class="wrap hero-layout">
+    <div class="hero-copy">
+      <p class="hero-kicker">{site.title}</p>
+      <h1 id="hero-name" class="hero-name">{site.name}</h1>
+      <p class="hero-headline">{site.headline}</p>
+      <p class="hero-summary">{site.summary}</p>
+    </div>
+
+    <div class="hero-dock">
+      <div class="liquid-gl liquid-gl--hero" id="hero-lens" aria-hidden="true"></div>
+      <div class="hero-glass" id="hero-glass-content">
+        <p class="hero-glass-label">Portfolio</p>
+        <p class="hero-glass-text">
+          Software Engineer · Applied AI<br />
+          Building systems that ship.
+        </p>
+        <div class="hero-glass-actions">
+          <a
+            class="btn btn-primary"
+            href={site.resumePath}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open resume PDF"
+          >
+            View resume
+          </a>
+          <a class="btn btn-ghost" href="#contact">Contact</a>
+          <a
+            class="btn btn-ghost"
+            href={site.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub profile"
+          >
+            GitHub
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -38,64 +51,101 @@ import { site } from '../data/site';
     min-height: calc(100svh - 5.5rem);
     display: grid;
     align-items: center;
+    padding-block: clamp(3rem, 10vh, 6rem);
   }
 
-  .hero-content {
-    padding-block: clamp(4rem, 14vh, 8rem);
-    max-width: 44rem;
+  .hero-layout {
+    display: grid;
+    gap: clamp(2rem, 5vw, 3.5rem);
+    align-items: center;
+  }
+
+  @media (min-width: 960px) {
+    .hero-layout {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
   }
 
   .hero-kicker {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
     margin-bottom: 1rem;
   }
 
   .hero-name {
-    font-size: clamp(3.25rem, 9vw, 5.5rem);
+    font-size: clamp(3.25rem, 9vw, 5.75rem);
     font-weight: 700;
-    letter-spacing: -0.045em;
-    line-height: 0.98;
+    letter-spacing: -0.05em;
+    line-height: 0.95;
     margin-bottom: 1.15rem;
   }
 
   .hero-headline {
-    font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+    font-size: clamp(1.2rem, 2.4vw, 1.55rem);
     font-weight: 500;
     letter-spacing: -0.025em;
     line-height: 1.3;
-    color: var(--text);
-    max-width: 26ch;
+    max-width: 22ch;
     margin-bottom: 0.85rem;
   }
 
   .hero-summary {
     max-width: 34rem;
     color: var(--text-secondary);
-    font-size: 1.125rem;
+    font-size: 1.1rem;
     line-height: 1.5;
-    margin-bottom: 2rem;
   }
 
-  .hero-actions {
+  /* Dock pattern from liquidgl.naughtyduk.com: lens + separate content */
+  .hero-dock {
+    position: relative;
+    width: min(100%, 36rem);
+    justify-self: start;
+  }
+
+  @media (min-width: 960px) {
+    .hero-dock {
+      justify-self: end;
+    }
+  }
+
+  .liquid-gl--hero {
+    position: absolute;
+    inset: 0;
+    border-radius: 28px;
+    pointer-events: none;
+  }
+
+  .hero-glass {
+    position: relative;
+    z-index: 6;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    border-radius: 28px;
+  }
+
+  .hero-glass-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 0.85rem;
+  }
+
+  .hero-glass-text {
+    font-size: clamp(1.15rem, 2vw, 1.4rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.35;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-glass-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.65rem;
-  }
-
-  .hero-animate {
-    opacity: 0;
-    transform: translateY(0.9rem);
-    animation: rise-in 700ms var(--ease) forwards;
-    animation-delay: var(--d, 0ms);
-  }
-
-  @keyframes rise-in {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    gap: 0.55rem;
   }
 </style>

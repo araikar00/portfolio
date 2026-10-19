@@ -14,44 +14,42 @@ import { projects } from '../data/projects';
       {
         projects.map((project, index) => (
           <article class="project reveal" style={`--i: ${index}`}>
-            <div class="liquid-gl liquid-gl--card">
-              <div class="liquid-gl__content project-inner">
-                <div class="project-meta">
-                  <span class="project-index">{String(index + 1).padStart(2, '0')}</span>
-                  {project.href && (
-                    <a
-                      class="project-link"
-                      href={project.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${project.name} source on GitHub`}
-                    >
-                      View source
-                    </a>
-                  )}
-                </div>
-                <h3 class="project-name">{project.name}</h3>
-                <p class="project-tagline">{project.tagline}</p>
-                <dl class="project-details">
-                  <div>
-                    <dt>Problem</dt>
-                    <dd>{project.problem}</dd>
-                  </div>
-                  <div>
-                    <dt>Role</dt>
-                    <dd>{project.role}</dd>
-                  </div>
-                  <div>
-                    <dt>Outcome</dt>
-                    <dd>{project.outcome}</dd>
-                  </div>
-                </dl>
-                <ul class="tech-list" aria-label="Technologies">
-                  {project.tech.map((item) => (
-                    <li>{item}</li>
-                  ))}
-                </ul>
+            <div class="panel project-inner">
+              <div class="project-meta">
+                <span class="project-index">{String(index + 1).padStart(2, '0')}</span>
+                {project.href && (
+                  <a
+                    class="project-link"
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${project.name} source on GitHub`}
+                  >
+                    View source
+                  </a>
+                )}
               </div>
+              <h3 class="project-name">{project.name}</h3>
+              <p class="project-tagline">{project.tagline}</p>
+              <dl class="project-details">
+                <div>
+                  <dt>Problem</dt>
+                  <dd>{project.problem}</dd>
+                </div>
+                <div>
+                  <dt>Role</dt>
+                  <dd>{project.role}</dd>
+                </div>
+                <div>
+                  <dt>Outcome</dt>
+                  <dd>{project.outcome}</dd>
+                </div>
+              </dl>
+              <ul class="tech-list" aria-label="Technologies">
+                {project.tech.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
             </div>
           </article>
         ))
@@ -135,8 +133,8 @@ import { projects } from '../data/projects';
     font-size: 0.75rem;
     font-weight: 500;
     color: var(--text-secondary);
-    background: rgba(255, 255, 255, 0.55);
-    border: 1px solid var(--glass-border-soft);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(16, 16, 16, 0.06);
     border-radius: var(--radius-pill);
     padding: 0.3rem 0.7rem;
   }

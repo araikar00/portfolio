@@ -12,32 +12,30 @@ import { experience } from '../data/experience';
       {
         experience.map((job, index) => (
           <li class="reveal" style={`--i: ${index}`}>
-            <div class="liquid-gl liquid-gl--card">
-              <div class="liquid-gl__content exp-item">
-                <div class="exp-logo" aria-hidden="true">
-                  <img src={job.logo} alt="" width="96" height="96" />
-                </div>
+            <div class="panel exp-item">
+              <div class="exp-logo" aria-hidden="true">
+                <img src={job.logo} alt="" width="96" height="96" />
+              </div>
 
-                <div class="exp-body">
-                  <div class="exp-top">
-                    <h3 class="exp-company">{job.company}</h3>
-                    <p class="exp-dates">
-                      {job.start} — {job.end}
-                      {job.location ? ` · ${job.location}` : ''}
-                    </p>
-                  </div>
-                  <p class="exp-role">{job.role}</p>
-
-                  <p class="exp-tags" aria-label="Technologies">
-                    {job.tags.join('  ')}
+              <div class="exp-body">
+                <div class="exp-top">
+                  <h3 class="exp-company">{job.company}</h3>
+                  <p class="exp-dates">
+                    {job.start} — {job.end}
+                    {job.location ? ` · ${job.location}` : ''}
                   </p>
-
-                  <ul class="exp-copy">
-                    {job.description.map((paragraph) => (
-                      <li>{paragraph}</li>
-                    ))}
-                  </ul>
                 </div>
+                <p class="exp-role">{job.role}</p>
+
+                <p class="exp-tags" aria-label="Technologies">
+                  {job.tags.join('  ')}
+                </p>
+
+                <ul class="exp-copy">
+                  {job.description.map((paragraph) => (
+                    <li>{paragraph}</li>
+                  ))}
+                </ul>
               </div>
             </div>
           </li>
@@ -82,10 +80,10 @@ import { experience } from '../data/experience';
     overflow: hidden;
     flex-shrink: 0;
     background: #fff;
-    border: 1px solid var(--glass-border);
+    border: 1px solid rgba(16, 16, 16, 0.06);
     box-shadow:
-      0 12px 36px rgba(15, 23, 42, 0.1),
-      0 4px 12px rgba(15, 23, 42, 0.05);
+      0 12px 36px rgba(16, 16, 16, 0.1),
+      0 4px 12px rgba(16, 16, 16, 0.05);
   }
 
   .exp-logo img {

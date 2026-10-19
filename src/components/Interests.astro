@@ -10,22 +10,20 @@ import { interests } from '../data/interests';
       <p class="section-lead">Signals beyond the resume — the problems and environments I care about.</p>
     </div>
 
-    <div class="interest-glass">
-      <div class="liquid-gl liquid-gl--card">
-        <ul class="liquid-gl__content interest-list">
-          {
-            interests.map((item) => (
-              <li>{item}</li>
-            ))
-          }
-        </ul>
-      </div>
+    <div class="panel interest-panel">
+      <ul class="interest-list">
+        {
+          interests.map((item) => (
+            <li>{item}</li>
+          ))
+        }
+      </ul>
     </div>
   </div>
 </section>
 
 <style>
-  .interest-glass {
+  .interest-panel {
     max-width: 40rem;
   }
 

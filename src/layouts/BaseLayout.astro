@@ -37,32 +37,37 @@ const jsonLd = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content={site.name} />
-    <meta
-      name="keywords"
-      content="Aryan Raikar, Software Engineer, Applied AI, Wells Fargo, UCSD, portfolio"
-    />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" href="/favicon.svg" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:site_name" content={site.name} />
-    <meta property="og:locale" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
-    <meta name="theme-color" content="#f5f5f7" />
+    <meta name="theme-color" content="#eaeaec" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>
+    <div class="bg-stage" aria-hidden="true">
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        poster="/media/bg-poster.webp"
+        aria-label="Animated gradient background"
+      >
+        <source src="/media/bg.mp4" type="video/mp4" />
+      </video>
+      <img src="/media/bg-poster.webp" alt="" />
+    </div>
+
     <a class="skip-link" href="#main">Skip to content</a>
     <slot />
+
     <script>
       const revealEls = document.querySelectorAll('.reveal');
       if ('IntersectionObserver' in window) {
@@ -82,64 +87,81 @@ const jsonLd = {
         revealEls.forEach((el) => el.classList.add('is-visible'));
       }
     </script>
-    <!-- Official liquidGL order: library → helper → init (blocking, like demos) -->
+
+    <!-- liquidGL: classic IIFE scripts, same pattern as liquidgl.naughtyduk.com -->
     <script is:inline src="/vendor/liquidGL.js"></script>
-    <script is:inline src="/vendor/liquidGL-helper.js"></script>
     <script is:inline>
       (function () {
-        var BASE = {
-          engine: 'auto',
-          snapshot: 'body',
-          resolution: 2.0,
-          refraction: 0.01,
-          aberration: 0,
-          bevelDepth: 0.08,
-          bevelWidth: 0.15,
-          frost: 3,
-          shadow: true,
-          specular: true,
-          reveal: 'fade',
-          tilt: false,
-          tiltFactor: 5,
-          tiltEase: 400,
-          draggable: false,
-          interaction: 'none',
-          magnify: 1,
-          tint: null,
-          helper: false,
-        };
-
         function initLiquidGL() {
           if (typeof window.liquidGL !== 'function') {
-            console.error('liquidGL failed to load from /vendor/liquidGL.js');
+            console.error('liquidGL failed to load');
             return;
           }
 
-          if (document.querySelector('.liquid-gl--nav')) {
-            window.liquidGL(
-              Object.assign({}, BASE, {
-                target: '.liquid-gl--nav',
-                frost: 4,
-                refraction: 0.012,
-                bevelDepth: 0.1,
-                bevelWidth: 0.18,
-                helper: true,
-                zIndex: 50,
-              }),
-            );
+          // Match liquidgl.naughtyduk.com: crystal glass over rich video
+          const video = document.querySelector('.bg-stage video');
+          if (video && typeof window.liquidGL.registerDynamic === 'function') {
+            window.liquidGL.registerDynamic([video]);
           }
 
-          if (document.querySelector('.liquid-gl--card')) {
-            window.liquidGL(
-              Object.assign({}, BASE, {
-                target: '.liquid-gl--card',
-                frost: 3.5,
-                refraction: 0.008,
-                bevelDepth: 0.07,
-                bevelWidth: 0.12,
-                helper: false,
-              }),
-            );
+          // Nav — same recipe as their dock lens
+          if (document.querySelector('.liquid-gl--nav')) {
+            window.liquidGL({
+              target: '.liquid-gl--nav',
+              content: '.liquid-gl--nav .liquid-gl__content',
+              snapshot: 'body',
+              resolution: 2,
+              engine: 'auto',
+              refraction: 0.02,
+              aberration: 0.85,
+              bevelDepth: 0.04,
+              bevelWidth: 0.09,
+              frost: 0,
+              shadow: true,
+              specular: true,
+              reveal: 'fade',
+              tilt: false,
+              draggable: false,
+              interaction: 'fluid',
+              interactionStrength: 0.5,
+              interactionRadius: 0.5,
+              interactionViscosity: 0.35,
+              magnify: 1.05,
+              tint: 'rgba(234, 234, 236, 0.18)',
+              helper: false,
+              zIndex: 50,
+            });
+          }
+
+          // Hero pane — dock pattern: empty lens + separate content overlay
+          if (document.querySelector('.liquid-gl--hero')) {
+            window.liquidGL({
+              target: '#hero-lens',
+              content: '#hero-glass-content',
+              snapshot: 'body',
+              resolution: 2,
+              engine: 'auto',
+              refraction: 0.03,
+              aberration: 0.5,
+              bevelDepth: 0.1,
+              bevelWidth: 0.12,
+              frost: 0,
+              shadow: true,
+              specular: true,
+              reveal: 'fade',
+              tilt: true,
+              tiltFactor: 3,
+              tiltEase: 400,
+              draggable: false,
+              interaction: 'fluid',
+              interactionStrength: 0.4,
+              interactionRadius: 0.4,
+              interactionViscosity: 0.55,
+              magnify: 1,
+              tint: null,
+              helper: false,
+              zIndex: 5,
+            });
           }
 
           window.liquidGL.syncWith();
@@ -149,13 +171,9 @@ const jsonLd = {
         if (document.readyState === 'complete') {
           requestAnimationFrame(initLiquidGL);
         } else {
-          window.addEventListener(
-            'load',
-            function () {
-              requestAnimationFrame(initLiquidGL);
-            },
-            { once: true },
-          );
+          window.addEventListener('load', function () {
+            requestAnimationFrame(initLiquidGL);
+          }, { once: true });
         }
       })();
     </script>
@@ -169,14 +187,28 @@ const jsonLd = {
     top: -3rem;
     z-index: 100;
     padding: 0.55rem 0.9rem;
-    background: var(--accent);
+    background: #101010;
     color: #fff;
-    font-weight: 500;
+    font-weight: 600;
     text-decoration: none;
     border-radius: var(--radius-pill);
   }
 
   .skip-link:focus {
     top: 0.85rem;
+  }
+
+  /* Prefer video; hide poster img when video can play */
+  .bg-stage img {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bg-stage video {
+      display: none;
+    }
+    .bg-stage img {
+      display: block;
+    }
   }
 </style>
