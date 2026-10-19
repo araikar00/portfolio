@@ -12,8 +12,9 @@ const links = [
 
 <header class="site-header">
   <div class="wrap header-shell">
-    <div class="liquid-gl liquid-gl--nav">
-      <div class="liquid-gl__content header-inner">
+    <div class="nav-dock">
+      <div class="liquid-gl liquid-gl--nav" id="nav-lens" aria-hidden="true"></div>
+      <div class="header-inner" id="nav-content">
         <a class="brand" href="#top">{site.name}</a>
         <nav class="nav" aria-label="Primary">
           {
@@ -69,12 +70,31 @@ const links = [
     justify-content: center;
   }
 
+  /* Lens below; labels/links above the liquidGL canvas */
+  .nav-dock {
+    position: relative;
+    z-index: 60;
+    width: fit-content;
+    max-width: 100%;
+  }
+
+  .liquid-gl--nav {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: var(--radius-pill);
+    pointer-events: none;
+  }
+
   .header-inner {
+    position: relative;
+    z-index: 2;
     display: flex;
     align-items: center;
     gap: 0.5rem;
     min-height: 3.4rem;
     padding: 0.4rem 0.45rem 0.4rem 1.2rem;
+    border-radius: var(--radius-pill);
   }
 
   .brand {
@@ -95,19 +115,18 @@ const links = [
   }
 
   .nav a {
-    color: var(--text-secondary);
+    color: var(--text);
     text-decoration: none;
     font-size: 0.8125rem;
-    font-weight: 600;
+    font-weight: 650;
     letter-spacing: -0.01em;
     padding: 0.45rem 0.7rem;
     border-radius: var(--radius-pill);
   }
 
   .nav a:hover {
-    color: var(--text);
     opacity: 1;
-    background: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.45);
   }
 
   .mobile-nav {

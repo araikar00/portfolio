@@ -104,11 +104,11 @@ const jsonLd = {
             window.liquidGL.registerDynamic([video]);
           }
 
-          // Nav — same recipe as their dock lens
-          if (document.querySelector('.liquid-gl--nav')) {
+          // Nav — empty lens; crisp labels sit above the canvas
+          if (document.querySelector('#nav-lens')) {
             window.liquidGL({
-              target: '.liquid-gl--nav',
-              content: '.liquid-gl--nav .liquid-gl__content',
+              target: '#nav-lens',
+              content: false,
               snapshot: 'body',
               resolution: 2,
               engine: 'auto',
@@ -126,8 +126,8 @@ const jsonLd = {
               interactionStrength: 0.5,
               interactionRadius: 0.5,
               interactionViscosity: 0.35,
-              magnify: 1.05,
-              tint: 'rgba(234, 234, 236, 0.18)',
+              magnify: 1,
+              tint: 'rgba(255, 255, 255, 0.28)',
               helper: false,
               zIndex: 50,
             });

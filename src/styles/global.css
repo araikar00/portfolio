@@ -161,7 +161,6 @@ ol {
 }
 
 .liquid-gl--nav {
-  z-index: 50;
   border-radius: var(--radius-pill);
 }
 
