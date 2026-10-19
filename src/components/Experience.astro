@@ -1,5 +1,4 @@
 ---
-import { GlassEffect } from './ui/liquid-glass';
 import { experience } from '../data/experience';
 ---
 
@@ -13,28 +12,34 @@ import { experience } from '../data/experience';
       {
         experience.map((job, index) => (
           <li class="reveal" style={`--i: ${index}`}>
-            <GlassEffect className="rounded-3xl w-full overflow-hidden">
-              <div class="exp-item">
+            <div class="liquid-gl">
+              <div class="liquid-gl__content exp-item">
                 <div class="exp-logo" aria-hidden="true">
                   <img src={job.logo} alt="" width="96" height="96" />
                 </div>
 
                 <div class="exp-body">
-                  <h3 class="exp-company">{job.company}</h3>
+                  <div class="exp-top">
+                    <h3 class="exp-company">{job.company}</h3>
+                    <p class="exp-dates">
+                      {job.start} — {job.end}
+                      {job.location ? ` · ${job.location}` : ''}
+                    </p>
+                  </div>
                   <p class="exp-role">{job.role}</p>
 
                   <p class="exp-tags" aria-label="Technologies">
                     {job.tags.join('  ')}
                   </p>
 
-                  <div class="exp-copy">
+                  <ul class="exp-copy">
                     {job.description.map((paragraph) => (
-                      <p>{paragraph}</p>
+                      <li>{paragraph}</li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
               </div>
-            </GlassEffect>
+            </div>
           </li>
         ))
       }
@@ -79,9 +84,8 @@ import { experience } from '../data/experience';
     background: #fff;
     border: 1px solid var(--glass-border);
     box-shadow:
-      0 12px 36px rgba(15, 23, 42, 0.12),
-      0 4px 12px rgba(15, 23, 42, 0.06),
-      inset 0 1px 0 rgba(255, 255, 255, 0.75);
+      0 12px 36px rgba(15, 23, 42, 0.1),
+      0 4px 12px rgba(15, 23, 42, 0.05);
   }
 
   .exp-logo img {
@@ -95,11 +99,24 @@ import { experience } from '../data/experience';
     padding-top: 0.1rem;
   }
 
+  .exp-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.35rem 1rem;
+    margin-bottom: 0.15rem;
+  }
+
   .exp-company {
     font-size: clamp(1.35rem, 2.6vw, 1.7rem);
     font-weight: 700;
     letter-spacing: -0.035em;
-    margin-bottom: 0.15rem;
+  }
+
+  .exp-dates {
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
   }
 
   .exp-role {
@@ -123,22 +140,28 @@ import { experience } from '../data/experience';
 
   .exp-copy {
     display: grid;
-    gap: 0.55rem;
-    overflow-x: auto;
+    gap: 0.65rem;
   }
 
-  .exp-copy p {
+  .exp-copy li {
+    position: relative;
+    padding-left: 1rem;
     color: var(--text);
     font-size: 0.975rem;
-    line-height: 1.5;
+    line-height: 1.55;
     font-weight: 400;
-    white-space: nowrap;
   }
 
-  @media (max-width: 900px) {
-    .exp-copy p {
-      white-space: normal;
-    }
+  .exp-copy li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 0.3rem;
+    height: 0.3rem;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.7;
   }
 
   @media (max-width: 600px) {

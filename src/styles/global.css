@@ -1,27 +1,6 @@
-@import "tailwindcss/theme" layer(theme);
-@import "tailwindcss/utilities" layer(utilities);
-@import "tw-animate-css";
-
-@theme {
-  --radius-4xl: 2rem;
-}
-
-.rounded-inherit {
-  border-radius: inherit;
-}
-
-@keyframes moveBackground {
-  from {
-    background-position: 0% 0%;
-  }
-  to {
-    background-position: 0% -1000%;
-  }
-}
-
 :root {
-  --bg: #f2f4f8;
-  --bg-soft: #e8ecf2;
+  --bg: #f5f5f7;
+  --bg-soft: #e8e8ed;
   --text: #1d1d1f;
   --text-secondary: #6e6e73;
   --text-tertiary: #86868b;
@@ -29,9 +8,9 @@
   --accent-hover: #0077ed;
   --glass: rgba(255, 255, 255, 0.55);
   --glass-strong: rgba(255, 255, 255, 0.72);
-  --glass-border: rgba(255, 255, 255, 0.7);
-  --glass-border-soft: rgba(255, 255, 255, 0.45);
-  --glass-shadow: 0 8px 32px rgba(15, 23, 42, 0.08), 0 2px 8px rgba(15, 23, 42, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.65);
+  --glass-border-soft: rgba(255, 255, 255, 0.4);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04);
   --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.85), inset 0 -1px 0 rgba(255, 255, 255, 0.2);
   --line: rgba(0, 0, 0, 0.06);
   --line-strong: rgba(0, 0, 0, 0.1);
@@ -75,27 +54,17 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Photographic canvas so the liquid-glass distortion can read */
+/* Regular Apple-style canvas: soft gray + gentle wash (no photo wallpaper) */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   z-index: -2;
   background:
-    url("https://images.unsplash.com/photo-1432251407527-504a6b4174a2?q=80&w=2400&auto=format&fit=crop")
-      center top / 100% auto repeat-y;
-  animation: moveBackground 60s linear infinite;
-  pointer-events: none;
-}
-
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background:
-    linear-gradient(180deg, rgba(242, 247, 252, 0.28) 0%, rgba(232, 240, 248, 0.18) 100%),
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    radial-gradient(ellipse 90% 55% at 50% -15%, rgba(180, 205, 235, 0.35), transparent 58%),
+    radial-gradient(ellipse 50% 40% at 100% 30%, rgba(220, 230, 245, 0.4), transparent 50%),
+    radial-gradient(ellipse 45% 35% at 0% 70%, rgba(230, 235, 245, 0.45), transparent 50%),
+    #f5f5f7;
   pointer-events: none;
 }
 
@@ -187,14 +156,30 @@ ol {
   margin-bottom: 2rem;
 }
 
-/* Fallback surface if a non-React region still needs a glass plate */
-.glass {
-  background: var(--glass);
+/* liquidGL target shell — CSS fallback when WebGPU/WebGL unavailable or reduced motion */
+.liquid-gl {
+  position: relative;
+  isolation: isolate;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: var(--glass-shadow), var(--glass-inset);
+  overflow: hidden;
+}
+
+.liquid-gl--pill {
+  border-radius: var(--radius-pill);
+}
+
+.liquid-gl__content {
+  position: relative;
+  z-index: 2;
+}
+
+html.liquid-gl-fallback .liquid-gl,
+html:not(.liquid-gl-ready):not(.liquid-gl-fallback) .liquid-gl {
   backdrop-filter: var(--blur);
   -webkit-backdrop-filter: var(--blur);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow), var(--glass-inset);
-  border-radius: var(--radius-lg);
 }
 
 .btn {
@@ -240,10 +225,8 @@ ol {
 }
 
 .btn-ghost {
-  background: var(--glass-strong);
-  backdrop-filter: var(--blur);
-  -webkit-backdrop-filter: var(--blur);
-  border-color: var(--glass-border);
+  background: rgba(255, 255, 255, 0.65);
+  border-color: rgba(255, 255, 255, 0.7);
   color: var(--text);
   box-shadow: var(--glass-inset), 0 2px 10px rgba(15, 23, 42, 0.05);
 }
@@ -251,7 +234,6 @@ ol {
 .btn-ghost:hover {
   background: rgba(255, 255, 255, 0.88);
   color: var(--text);
-  border-color: rgba(255, 255, 255, 0.9);
 }
 
 .reveal {
@@ -279,9 +261,5 @@ ol {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
-  }
-
-  body::before {
-    animation: none;
   }
 }

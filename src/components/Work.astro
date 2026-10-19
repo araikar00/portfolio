@@ -1,5 +1,4 @@
 ---
-import { GlassEffect } from './ui/liquid-glass';
 import { projects } from '../data/projects';
 ---
 
@@ -8,17 +7,15 @@ import { projects } from '../data/projects';
     <div class="reveal">
       <p class="section-label">Selected work</p>
       <h2 class="section-title" id="work-title">Projects</h2>
-      <p class="section-lead">
-        A short list of shipped or in-progress work.
-      </p>
+      <p class="section-lead">A short list of shipped or in-progress work.</p>
     </div>
 
     <div class="project-list">
       {
         projects.map((project, index) => (
           <article class="project reveal" style={`--i: ${index}`}>
-            <GlassEffect className="rounded-3xl w-full overflow-hidden">
-              <div class="project-inner">
+            <div class="liquid-gl">
+              <div class="liquid-gl__content project-inner">
                 <div class="project-meta">
                   <span class="project-index">{String(index + 1).padStart(2, '0')}</span>
                   {project.href && (
@@ -55,7 +52,7 @@ import { projects } from '../data/projects';
                   ))}
                 </ul>
               </div>
-            </GlassEffect>
+            </div>
           </article>
         ))
       }

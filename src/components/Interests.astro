@@ -1,5 +1,4 @@
 ---
-import { GlassEffect } from './ui/liquid-glass';
 import { interests } from '../data/interests';
 ---
 
@@ -12,15 +11,15 @@ import { interests } from '../data/interests';
     </div>
 
     <div class="interest-glass">
-      <GlassEffect className="rounded-3xl w-full overflow-hidden">
-        <ul class="interest-list reveal">
+      <div class="liquid-gl">
+        <ul class="liquid-gl__content interest-list">
           {
             interests.map((item) => (
               <li>{item}</li>
             ))
           }
         </ul>
-      </GlassEffect>
+      </div>
     </div>
   </div>
 </section>
@@ -34,6 +33,8 @@ import { interests } from '../data/interests';
     display: grid;
     gap: 0;
     padding: 0.4rem;
+    margin: 0;
+    list-style: none;
   }
 
   .interest-list li {

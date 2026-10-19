@@ -1,5 +1,4 @@
 ---
-import { GlassEffect } from './ui/liquid-glass';
 import { skills } from '../data/skills';
 ---
 
@@ -8,15 +7,15 @@ import { skills } from '../data/skills';
     <div class="reveal">
       <p class="section-label">Skills</p>
       <h2 class="section-title" id="skills-title">Technical Skills</h2>
-      <p class="section-lead">A focused set of languages, systems, and ML-adjacent tooling.</p>
+      <p class="section-lead">Languages, frameworks, ML tooling, and infrastructure from production work.</p>
     </div>
 
     <div class="skill-grid">
       {
         skills.map((group, index) => (
           <div class="skill-group reveal" style={`--i: ${index}`}>
-            <GlassEffect className="rounded-3xl w-full h-full overflow-hidden">
-              <div class="skill-inner">
+            <div class="liquid-gl">
+              <div class="liquid-gl__content skill-inner">
                 <h3>{group.label}</h3>
                 <ul>
                   {group.items.map((item) => (
@@ -24,7 +23,7 @@ import { skills } from '../data/skills';
                   ))}
                 </ul>
               </div>
-            </GlassEffect>
+            </div>
           </div>
         ))
       }
@@ -41,6 +40,11 @@ import { skills } from '../data/skills';
 
   .skill-group {
     transition-delay: calc(var(--i, 0) * 50ms);
+    height: 100%;
+  }
+
+  .skill-group .liquid-gl {
+    height: 100%;
   }
 
   .skill-inner {

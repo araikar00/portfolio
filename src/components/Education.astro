@@ -1,5 +1,4 @@
 ---
-import { GlassEffect } from './ui/liquid-glass';
 import { education } from '../data/education';
 ---
 
@@ -15,8 +14,8 @@ import { education } from '../data/education';
       {
         education.map((item, index) => (
           <article class="edu-item reveal" style={`--i: ${index}`}>
-            <GlassEffect className="rounded-3xl w-full overflow-hidden">
-              <div class="edu-inner">
+            <div class="liquid-gl">
+              <div class="liquid-gl__content edu-inner">
                 <h3>{item.degree}</h3>
                 <p class="edu-school">
                   {item.school}
@@ -33,7 +32,7 @@ import { education } from '../data/education';
                   </ul>
                 )}
               </div>
-            </GlassEffect>
+            </div>
           </article>
         ))
       }
@@ -76,7 +75,6 @@ import { education } from '../data/education';
   .edu-details {
     display: grid;
     gap: 0.45rem;
-    max-width: 40rem;
   }
 
   .edu-details li {

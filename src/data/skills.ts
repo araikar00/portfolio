@@ -6,18 +6,18 @@ export type SkillGroup = {
 export const skills: SkillGroup[] = [
   {
     label: 'Languages',
-    items: ['Java', 'Python', 'TypeScript', 'JavaScript', 'SQL'],
+    items: ['Python', 'Java', 'TypeScript', 'JavaScript', 'C++', 'SQL'],
   },
   {
-    label: 'Backend & Systems',
-    items: ['Spring Boot', 'REST APIs', 'OpenAPI', 'Kafka', 'MongoDB'],
+    label: 'Frameworks & APIs',
+    items: ['Spring Boot', 'React', 'Node.js', 'FastAPI', 'REST APIs', 'OpenAPI'],
   },
   {
-    label: 'ML / Data',
-    items: ['LightGBM', 'LangChain', 'RAG', 'Pandas', 'Gemini'],
+    label: 'AI, ML & Data',
+    items: ['LangChain', 'RAG', 'Gemini', 'LightGBM', 'Scikit-Learn', 'Pandas'],
   },
   {
-    label: 'Tools',
-    items: ['Git', 'Docker', 'GitHub Actions', 'JUnit', 'Mockito'],
+    label: 'Cloud & Tools',
+    items: ['AWS', 'GCP', 'Docker', 'PostgreSQL', 'MongoDB', 'Kafka', 'GitHub Actions'],
   },
 ];

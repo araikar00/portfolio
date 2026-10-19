@@ -1,5 +1,4 @@
 ---
-import { GlassEffect } from './ui/liquid-glass';
 import { site } from '../data/site';
 
 const links = [
@@ -13,8 +12,8 @@ const links = [
 
 <header class="site-header">
   <div class="wrap header-shell">
-    <GlassEffect className="w-full rounded-full overflow-visible">
-      <div class="header-inner">
+    <div class="liquid-gl liquid-gl--pill">
+      <div class="liquid-gl__content header-inner">
         <a class="brand" href="#top">{site.name}</a>
         <nav class="nav" aria-label="Primary">
           {
@@ -43,7 +42,7 @@ const links = [
           Resume
         </a>
       </div>
-    </GlassEffect>
+    </div>
   </div>
 </header>
 
@@ -71,7 +70,6 @@ const links = [
   }
 
   .header-inner {
-    width: 100%;
     display: flex;
     align-items: center;
     gap: 0.5rem;

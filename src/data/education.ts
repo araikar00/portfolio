@@ -10,13 +10,12 @@ export type Education = {
 export const education: Education[] = [
   {
     school: 'University of California, San Diego',
-    degree: 'B.S. in Mathematics and Computer Science',
+    degree: 'B.S. in Computer Science & Mathematics',
     location: 'La Jolla, CA',
     start: '2022',
-    end: '2026',
+    end: 'June 2026',
     details: [
-      'Coursework: Data Structures & Algorithms, Databases, Machine Learning, Operating Systems',
-      'Focus areas: software engineering, applied ML, and systems for reliable production software',
+      'Relevant Coursework: Advanced Data Structures & Algorithms, Computer Organization & Assembly Language, Object-Oriented Programming, Probability Theory, Mathematical Reasoning & System Analysis, Discrete Mathematics',
     ],
   },
 ];

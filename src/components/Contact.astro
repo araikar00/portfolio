@@ -1,13 +1,12 @@
 ---
-import { GlassEffect } from './ui/liquid-glass';
 import { site } from '../data/site';
 ---
 
 <section class="section contact" id="contact" aria-labelledby="contact-title">
   <div class="wrap">
     <div class="reveal">
-      <GlassEffect className="rounded-3xl w-full overflow-hidden">
-        <div class="contact-panel">
+      <div class="liquid-gl">
+        <div class="liquid-gl__content contact-panel">
           <p class="section-label">Contact</p>
           <h2 class="section-title" id="contact-title">Let’s talk about roles and systems</h2>
           <p class="section-lead">
@@ -43,7 +42,7 @@ import { site } from '../data/site';
             </a>
           </div>
         </div>
-      </GlassEffect>
+      </div>
     </div>
   </div>
 </section>

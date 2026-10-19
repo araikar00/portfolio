@@ -12,23 +12,26 @@ export type Experience = {
 export const experience: Experience[] = [
   {
     company: 'Wells Fargo',
-    role: 'Software Engineer',
+    role: 'Software Engineer, Applied AI',
     location: 'San Francisco, CA',
     start: 'August 2026',
     end: 'Present',
     logo: '/logos/wells-fargo.svg',
-    tags: ['Java', 'Spring Boot', 'Microservices', 'ML'],
+    tags: ['React', 'Python', 'FastAPI', 'PostgreSQL', 'MongoDB', 'Claude'],
     description: [
-      'Incoming full-time Software Engineer.',
-      'Focus areas include building and shipping production software in a large-scale enterprise environment.',
+      'Shipped a ground-up enterprise estate management platform (React, Python, MongoDB) as the sole full-stack engineer, surfacing 100+ previously untracked end-of-life risks for Technology CIOs, VPs, and 2,000+ internal users.',
+      'Cut design intake from 3+ days to under an hour across 300+ briefs by engineering a Claude Opus agent with tool calling, schema-validated JSON output, and streaming, replacing a manual, file-scattered intake process.',
+      'Shipped the agentic intake platform (React, Node.js, Python, PostgreSQL) to 10+ product teams within weeks of pilot, persisting multi-turn conversation state in PostgreSQL so users can pause and resume intakes across sessions.',
+      'Migrated a HITL approval workbench to an enterprise agentic platform in 3 days (React, Fluent UI, FastAPI), letting human reviewers approve or reject escalated actions from a customer-facing AI agent and unblocking platform work.',
+      'Engineered a FastAPI agent-routing gateway with registry lookup, custom timeouts, and 24+ unit/E2E tests.',
     ],
   },
   {
     company: 'Wells Fargo',
     role: 'Software Engineer Intern',
     location: 'San Francisco, CA',
-    start: 'May 2025',
-    end: 'August 2025',
+    start: 'June 2025',
+    end: 'September 2025',
     logo: '/logos/wells-fargo.svg',
     tags: ['Java', 'Spring Boot', 'OpenAPI', 'LightGBM', 'JUnit'],
     description: [
