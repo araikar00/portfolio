@@ -99,9 +99,10 @@ import { site } from '../data/site';
     line-height: 1.5;
   }
 
-  /* Dock pattern from liquidgl.naughtyduk.com: lens + separate content */
+  /* Lens below; content above canvas (dock z-index > liquidGL canvas) */
   .hero-dock {
     position: relative;
+    z-index: 20;
     width: min(100%, 36rem);
     justify-self: start;
   }
@@ -115,13 +116,14 @@ import { site } from '../data/site';
   .liquid-gl--hero {
     position: absolute;
     inset: 0;
+    z-index: 1;
     border-radius: 28px;
     pointer-events: none;
   }
 
   .hero-glass {
     position: relative;
-    z-index: 6;
+    z-index: 2;
     padding: clamp(1.5rem, 3vw, 2rem);
     border-radius: 28px;
   }

@@ -133,11 +133,11 @@ const jsonLd = {
             });
           }
 
-          // Hero pane — dock pattern: empty lens + separate content overlay
-          if (document.querySelector('.liquid-gl--hero')) {
+          // Hero pane — empty lens; crisp HTML content sits above the canvas
+          if (document.querySelector('#hero-lens')) {
             window.liquidGL({
               target: '#hero-lens',
-              content: '#hero-glass-content',
+              content: false,
               snapshot: 'body',
               resolution: 2,
               engine: 'auto',
