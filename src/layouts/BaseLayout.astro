@@ -164,32 +164,6 @@ const jsonLd = {
             });
           }
 
-          // Section cards — same crystal glass as hero
-          if (document.querySelector('.liquid-gl--card')) {
-            window.liquidGL({
-              target: '.liquid-gl--card',
-              content: false,
-              snapshot: 'body',
-              resolution: 2,
-              engine: 'auto',
-              refraction: 0.028,
-              aberration: 0.45,
-              bevelDepth: 0.09,
-              bevelWidth: 0.11,
-              frost: 0,
-              shadow: true,
-              specular: true,
-              reveal: 'fade',
-              tilt: false,
-              draggable: false,
-              interaction: 'none',
-              magnify: 1,
-              tint: 'rgba(255, 255, 255, 0.14)',
-              helper: false,
-              zIndex: 4,
-            });
-          }
-
           window.liquidGL.syncWith();
           document.documentElement.classList.add('liquid-gl-ready');
         }

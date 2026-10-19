@@ -169,43 +169,20 @@ ol {
   border-radius: 28px;
 }
 
-.liquid-gl--card {
-  border-radius: var(--radius-lg);
-}
-
 .liquid-gl__content {
   position: relative;
   z-index: 2;
   border-radius: inherit;
 }
 
-/* Glass card dock — same pattern as nav/hero (lens + crisp content) */
-.glass-dock {
-  position: relative;
-  z-index: 10;
-}
-
-.glass-dock .liquid-gl--card {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.glass-dock__content {
-  position: relative;
-  z-index: 2;
-  border-radius: var(--radius-lg);
-}
-
-/* Fallback / contact-style panels (non-liquidGL) */
+/* Readable frosted panels (Interests / Contact style) */
 .panel {
-  background: rgba(255, 255, 255, 0.22);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.65);
   border-radius: var(--radius-lg);
   box-shadow:
     0 10px 40px rgba(16, 16, 16, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(28px) saturate(1.15);
   -webkit-backdrop-filter: blur(28px) saturate(1.15);
 }

@@ -14,25 +14,22 @@ import { education } from '../data/education';
       {
         education.map((item, index) => (
           <article class="edu-item reveal" style={`--i: ${index}`}>
-            <div class="glass-dock">
-              <div class="liquid-gl liquid-gl--card" aria-hidden="true"></div>
-              <div class="glass-dock__content edu-inner">
-                <h3>{item.degree}</h3>
-                <p class="edu-school">
-                  {item.school}
-                  {item.location ? ` · ${item.location}` : ''}
-                </p>
-                <p class="edu-dates">
-                  {item.start} — {item.end}
-                </p>
-                {item.details && (
-                  <ul class="edu-details">
-                    {item.details.map((detail) => (
-                      <li>{detail}</li>
-                    ))}
-                  </ul>
-                )}
-              </div>
+            <div class="panel edu-inner">
+              <h3>{item.degree}</h3>
+              <p class="edu-school">
+                {item.school}
+                {item.location ? ` · ${item.location}` : ''}
+              </p>
+              <p class="edu-dates">
+                {item.start} — {item.end}
+              </p>
+              {item.details && (
+                <ul class="edu-details">
+                  {item.details.map((detail) => (
+                    <li>{detail}</li>
+                  ))}
+                </ul>
+              )}
             </div>
           </article>
         ))

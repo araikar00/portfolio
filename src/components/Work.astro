@@ -14,45 +14,42 @@ import { projects } from '../data/projects';
       {
         projects.map((project, index) => (
           <article class="project reveal" style={`--i: ${index}`}>
-            <div class="glass-dock">
-              <div class="liquid-gl liquid-gl--card" aria-hidden="true"></div>
-              <div class="glass-dock__content project-inner">
-                <div class="project-meta">
-                  <span class="project-index">{String(index + 1).padStart(2, '0')}</span>
-                  {project.href && (
-                    <a
-                      class="project-link"
-                      href={project.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${project.name} source on GitHub`}
-                    >
-                      View source
-                    </a>
-                  )}
-                </div>
-                <h3 class="project-name">{project.name}</h3>
-                <p class="project-tagline">{project.tagline}</p>
-                <dl class="project-details">
-                  <div>
-                    <dt>Problem</dt>
-                    <dd>{project.problem}</dd>
-                  </div>
-                  <div>
-                    <dt>Role</dt>
-                    <dd>{project.role}</dd>
-                  </div>
-                  <div>
-                    <dt>Outcome</dt>
-                    <dd>{project.outcome}</dd>
-                  </div>
-                </dl>
-                <ul class="tech-list" aria-label="Technologies">
-                  {project.tech.map((item) => (
-                    <li>{item}</li>
-                  ))}
-                </ul>
+            <div class="panel project-inner">
+              <div class="project-meta">
+                <span class="project-index">{String(index + 1).padStart(2, '0')}</span>
+                {project.href && (
+                  <a
+                    class="project-link"
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${project.name} source on GitHub`}
+                  >
+                    View source
+                  </a>
+                )}
               </div>
+              <h3 class="project-name">{project.name}</h3>
+              <p class="project-tagline">{project.tagline}</p>
+              <dl class="project-details">
+                <div>
+                  <dt>Problem</dt>
+                  <dd>{project.problem}</dd>
+                </div>
+                <div>
+                  <dt>Role</dt>
+                  <dd>{project.role}</dd>
+                </div>
+                <div>
+                  <dt>Outcome</dt>
+                  <dd>{project.outcome}</dd>
+                </div>
+              </dl>
+              <ul class="tech-list" aria-label="Technologies">
+                {project.tech.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
             </div>
           </article>
         ))

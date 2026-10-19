@@ -12,33 +12,30 @@ import { experience } from '../data/experience';
       {
         experience.map((job, index) => (
           <li class="reveal" style={`--i: ${index}`}>
-            <div class="glass-dock">
-              <div class="liquid-gl liquid-gl--card" aria-hidden="true"></div>
-              <div class="glass-dock__content exp-item">
-                <div class="exp-logo" aria-hidden="true">
-                  <img src={job.logo} alt="" width="96" height="96" />
-                </div>
+            <div class="panel exp-item">
+              <div class="exp-logo" aria-hidden="true">
+                <img src={job.logo} alt="" width="96" height="96" />
+              </div>
 
-                <div class="exp-body">
-                  <div class="exp-top">
-                    <h3 class="exp-company">{job.company}</h3>
-                    <p class="exp-dates">
-                      {job.start} — {job.end}
-                      {job.location ? ` · ${job.location}` : ''}
-                    </p>
-                  </div>
-                  <p class="exp-role">{job.role}</p>
-
-                  <p class="exp-tags" aria-label="Technologies">
-                    {job.tags.join('  ')}
+              <div class="exp-body">
+                <div class="exp-top">
+                  <h3 class="exp-company">{job.company}</h3>
+                  <p class="exp-dates">
+                    {job.start} — {job.end}
+                    {job.location ? ` · ${job.location}` : ''}
                   </p>
-
-                  <ul class="exp-copy">
-                    {job.description.map((paragraph) => (
-                      <li>{paragraph}</li>
-                    ))}
-                  </ul>
                 </div>
+                <p class="exp-role">{job.role}</p>
+
+                <p class="exp-tags" aria-label="Technologies">
+                  {job.tags.join('  ')}
+                </p>
+
+                <ul class="exp-copy">
+                  {job.description.map((paragraph) => (
+                    <li>{paragraph}</li>
+                  ))}
+                </ul>
               </div>
             </div>
           </li>
